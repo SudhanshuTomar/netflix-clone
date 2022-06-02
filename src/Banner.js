@@ -16,11 +16,16 @@ function Banner() {
     
     }, [])
     
-
+    function truncate(str,n){
+        return str?.length>n ? str.substr(0,n-1) + "..." : str;
+    }
   return (
-    <header className='banner' style = {{backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        backgroundImage: `url(${baseUrl}${movie?.backdrop_path})`,}}>
+    <header className='banner' 
+        style = {{
+            backgroundSize: 'cover',
+            backgroundImage: `url(${baseUrl}${movie?.backdrop_path})`,
+            backgroundPosition: 'top',
+            }}>
     
         <div className='banner-contents'>
         <h1 className='banner-title'>{movie?.name || movie?.title || movie?.original_name}</h1>
@@ -31,12 +36,10 @@ function Banner() {
         <button className='banner-button'> 
             My List
         </button>
-       </div>
-
-        {/* <img className='banner-poster' src={`${baseUrl}${movie.backdrop_path}`} alt={movie.name}/> */}
-        
-        <h1 className='banner-description'>{movie?.overview}</h1>
+       </div>        
+        <h1 className='banner-description'>{truncate(movie?.overview,150)}</h1>
         </div>
+        <div className='banner-fadebtm'></div>
         
     </header>
   )
